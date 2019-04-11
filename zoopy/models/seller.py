@@ -1,11 +1,13 @@
-from utils import get
+from utils import get, get_marketplace_id
+from models import Marketplace
+
 
 class Seller(object):
 
     BASE_MODEL_URL = '/sellers'
-
-    def __init__(self, marketplace, **kwargs):
-        self.marketplace = marketplace
+    
+    def __init__(self, **kwargs):
+        self.marketplace = Marketplace(id=kwargs.get('marketplace_id', get_marketplace_id()))
         self.id = kwargs.get('id', None)
         self.resource = 'seller'
         self.status = kwargs.get('status', None)
@@ -34,10 +36,7 @@ class Seller(object):
         self.updated_at = kwargs.get('updated_at', None)
 
     def get_url(self):
-        return f'{self.marketplace.get_url()}{self.BASE_MODEL_URL}/{self.id}'
-
-    def get_details(self):
-        return self.marketplace.get(self.get_url())
+        return f'{self.BASE_MODEL_URL}/{self.id}'
 
     def get_list(self):
         url = f'{self.marketplace.get_url()}{self.BASE_MODEL_URL}'

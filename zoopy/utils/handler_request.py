@@ -4,6 +4,7 @@ from requests.auth import HTTPBasicAuth
 BASE_URL = 'https://api.zoop.ws/v1'
 
 TOKEN = None
+MARKETPLACE_ID = None
 
 
 def validate_response(zoopy_response):
@@ -12,10 +13,14 @@ def validate_response(zoopy_response):
     else:
         return error(zoopy_response.json())
 
+def get_marketplace_id():
+    return MARKETPLACE_ID
 
-def authentication_key(api_key=None):
+def authentication_key(api_key=None, marketplace_id=None):
     global TOKEN    
+    global MARKETPLACE_ID    
     TOKEN = HTTPBasicAuth(api_key, '')
+    MARKETPLACE_ID = marketplace_id
 
 
 def delete(end_point, data = {}):
