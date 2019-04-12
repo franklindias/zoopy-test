@@ -1,4 +1,4 @@
-from models import Marketplace, Seller, Owner
+from models import Marketplace, Seller, Owner, Address
 from utils import authentication_key
 
 authentication_key(api_key='zpk_test_ISLmKnlXiHGSsgjanvN6gbOJ', marketplace_id="033ef887928e4fbb915276fa709993ed")
@@ -59,10 +59,10 @@ data = {
     'default_debit': None, 
     'default_credit': None,}
 
-owner = Owner(first_name="Franklin de teste")
-seller = Seller(id="7355b0f00ade4e5d88648c5f8f02681b", owner=owner, type="business")
+address = Address(line1="Nova rua de teste")
+seller = Seller(id="7355b0f00ade4e5d88648c5f8f02681b", address=address, type="business")
 
 seller = seller.update()
 
-print(seller.owner.first_name)
+print(seller.address.line1)
 

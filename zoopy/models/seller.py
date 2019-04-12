@@ -40,18 +40,15 @@ class Seller(ObjectJSON):
 
     def details(self):
         url = f'{self.marketplace.full_url}{self.BASE_MODEL_URL}/{self.id}'
-        self.__init__(**get(url))
-        return self
+        return Seller(**get(url))
     
     def create(self):
         url = f'{self.marketplace.full_url}{self.full_url}'
-        self.__init__(**post(end_point=url, data=self.toJSON()))
-        return self
-    
+        return Seller(**post(end_point=url, data=self.toJSON()))
+
     def update(self):
         url = f'{self.marketplace.full_url}{self.full_url}/{self.id}'
-        self.__init__(**put(end_point=url, data=self.toJSON()))
-        return self
+        return Seller(**put(end_point=url, data=self.toJSON()))
 
     def delete(self):
         url = f'{self.marketplace.full_url}{self.BASE_MODEL_URL}/{self.id}'

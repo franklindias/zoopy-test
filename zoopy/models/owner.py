@@ -6,5 +6,5 @@ class Owner(object):
             setattr(self, key, kwargs[key])
             
         _addrres = kwargs.get('address')
-        if _addrres and not isinstance(_addrres, Address)::
+        if _addrres and not isinstance(_addrres, Address):
             self.address = Address(**self.address)
