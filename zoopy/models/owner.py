@@ -2,12 +2,9 @@ from models import Address
 
 class Owner(object):
     def __init__(self, **kwargs):
-        self.taxpayer_id = kwargs.get('taxpayer_id', None)
-        self.first_name = kwargs.get('first_name', None)
-        self.last_name = kwargs.get('last_name', None)
-        self.email = kwargs.get('email', None)
-        self.phone_number = kwargs.get('phone_number', None)
-        self.birthdate = kwargs.get('birthdate', None)
-        
-        address = kwargs.get('address', None)
-        self.address = Address(**address) if address else None
+        for key in kwargs.keys():
+            setattr(self, key, kwargs[key])
+            
+        _addrres = kwargs.get('address')
+        if _addrres and not isinstance(_addrres, Address)::
+            self.address = Address(**self.address)
