@@ -8,7 +8,7 @@ MARKETPLACE_ID = None
 
 
 def validate_response(zoopy_response):
-    if zoopy_response.status_code == 200:
+    if zoopy_response.status_code in [200, 201, 204]:
         return zoopy_response.json()
     else:
         return error(zoopy_response.json())
@@ -43,12 +43,14 @@ def post(end_point, data={}):
 
 def put(end_point, data = {}):
     url = f'{BASE_URL}{end_point}'
+    print(url)
     zoopy_response = requests.put(url, data=data, headers=headers(), auth=TOKEN)
+    print(zoopy_response.text)
     return validate_response(zoopy_response)
 
 
 def error(data):
-    raise Exception(data['errors'])
+    raise Exception(data['error'])
 
 
 def headers():

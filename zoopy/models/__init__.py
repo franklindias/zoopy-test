@@ -3,7 +3,5 @@ from models.buyer import *
 from models.marketplace import *
 from models.owner import *
 from models.seller import *
-from models.seller_business import *
-from models.seller_individual import *
 from models.split_role import *
 from models.transaction import *

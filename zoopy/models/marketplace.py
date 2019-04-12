@@ -5,7 +5,8 @@ class Marketplace(object):
     def __init__(self, **kwargs):
         self.id = kwargs.get('id', None)
 
-    def get_url(self):
+    @property
+    def full_url(self):
         return f'{self.MODEL_BASE_URL}/{self.id}'
 
     def get_details(self):        

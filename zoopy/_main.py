@@ -1,30 +1,29 @@
-from models import Marketplace, SellerBusiness
+from models import Marketplace, Seller
 from utils import authentication_key
 
 authentication_key(api_key='zpk_test_ISLmKnlXiHGSsgjanvN6gbOJ', marketplace_id="033ef887928e4fbb915276fa709993ed")
 
 data = {
-    'id': '7355b0f00ade4e5d88648c5f8f02681b', 
     'status': 'enabled', 
     'resource': 'seller', 
     'type': 'business', 
-    'description': 'Marketplace de Testes Cubo Hub', 
+    'description': 'Novo Seller', 
     'account_balance': '0.00', 
     'current_balance': '0.00', 
-    'business_name': 'One Empreendimentos Servicos Combinados Eireli Me', 
+    'business_name': 'Business novo', 
     'business_phone': '84988752710', 
-    'business_email': 'guilhermehenrique@seawaycenter.com', 
+    'business_email': 'franklindias@seawaycenter.com', 
     'business_website': '', 
     'business_description': 'Cubo Hub', 
     'business_opening_date': '2017-11-30', 
     'business_facebook': '', 
     'business_twitter': None, 
-    'ein': '29253808000162', 
+    'ein': '61767956000108', 
     'statement_descriptor': 
     'cubohub', 
     'mcc': '18', 
     'business_adress': {
-        'line1': 'Av Engenheiro Roberto Freire', 
+        'line1': 'adasd', 
         'line2': '1962', 
         'line3': 'loja 26', 
         'neighborhood': 'Capim Macio', 
@@ -34,11 +33,11 @@ data = {
         'country_code': 'BR'
     }, 
     'owner': {
-        'first_name': 'Guilherme', 
-        'last_name': 'Oliveira', 
-        'email': 'guilhermehenrique@seawaycenter.com', 
+        'first_name': 'dasd', 
+        'last_name': 'Olivadasdeira', 
+        'email': 'dasdasdc@seawaycenter.com', 
         'phone_number': None, 
-        'taxpayer_id': None, 
+        'taxpayer_id': "09024942446", 
         'birthdate': None, 
         'address': {
             'line1': "rua linha 1", 
@@ -58,17 +57,9 @@ data = {
     'delinquent': False, 
     'payment_methods': None, 
     'default_debit': None, 
-    'default_credit': None, 
-    'merchant_code': '012000000000001', 
-    'terminal_code': 'GT0000CA', 
-    'uri': '/v1/marketplaces/55113f2bdef54dfc8c89e71c35d41c4c', 
-    'marketplace_id': '033ef887928e4fbb915276fa709993ed', 
-    'metadata': {}, 
-    'created_at': '2019-04-10T13:42:12+00:00', 
-    'updated_at': '2019-04-10T13:42:39+00:00'}
+    'default_credit': None,}
 
-seller = SellerBusiness(**data)
+seller = Seller(id="3ba8fedf19ba46f6b0164663255b7c64")
 
-seller = seller.get_list()
+print(seller.delete())
 
-print(seller)

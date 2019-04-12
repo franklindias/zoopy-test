@@ -8,4 +8,6 @@ class Owner(object):
         self.email = kwargs.get('email', None)
         self.phone_number = kwargs.get('phone_number', None)
         self.birthdate = kwargs.get('birthdate', None)
-        self.address = Address(**kwargs.get('address', {})) 
+        
+        address = kwargs.get('address', None)
+        self.address = Address(**address) if address else None
