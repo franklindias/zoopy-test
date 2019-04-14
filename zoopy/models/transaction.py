@@ -1,32 +1,23 @@
-class Transaction(object):
-    
-    def __init__(self, **kwargs):
-        self.id = kwargs.get('id', None)
-        self.resource = kwargs.get('resource', None)
-        self.status = kwargs.get('status', None)
-        self.amount = kwargs.get('amount', None)
-        self.original_amount = kwargs.get('original_amount', None)
-        self.currency = kwargs.get('currency', None)
-        self.description = kwargs.get('description', None)
-        self.payment_type = kwargs.get('payment_type', None)
-        self.transaction_number = kwargs.get('transaction_number', None)
-        self.refunds = kwargs.get('refunds', None)
-        self.rewards = kwargs.get('rewards', None)
-        self.discounts = kwargs.get('discounts', None)
-        self.sales_receipt = kwargs.get('sales_receipt', None)
-        self.on_behalf_of = kwargs.get('on_behalf_of', None)
-        self.customer = kwargs.get('customer', None)
-        self.statement_descriptor = kwargs.get('statement_descriptor', None)
-        self.payment_method = kwargs.get('payment_method', None)
-        self.installment_plan = kwargs.get('installment_plan', None)
-        self.mode = kwargs.get('mode', None)
-        self.number_installments = kwargs.get('number_installments', None)
-        self.fees = kwargs.get('fees', None)
-        self.fee_details = kwargs.get('fee_details', None)
-        self.currency = kwargs.get('currency', None)
-        self.location_latitute = kwargs.get('location_latitute', None)
-        self.location_longitude = kwargs.get('location_longitude', None)
-        self.metadata = kwargs.get('metadata', None)
-        self.expected_on = kwargs.get('expected_on', None)
-        self.created_at = kwargs.get('created_at', None)
-        self.updated_at = kwargs.get('updated_at', None)
+from zoopy.utils import get, put, post, delete
+from zoopy.models import marketplace 
+
+BASE_MODEL_URL = '/transactions'
+
+def full_url(self):
+    return BASE_MODEL_URL
+
+def list():
+    url = f'{marketplace.get_full_url()}{BASE_MODEL_URL}'
+    return get(url)
+
+def details(transaction_id):
+    url = f'{marketplace.get_full_url()}{BASE_MODEL_URL}/{id}'
+    return get(url)
+
+def create(params):
+    url = f'{marketplace.get_full_url()}{full_url}'
+    return post(end_point=url, data=params)
+
+def update(self):
+    url = f'{marketplace.get_full_url()}{full_url}/{id}'
+    return put(end_point=url, data=params)

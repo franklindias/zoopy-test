@@ -1,55 +1,34 @@
-from utils import get, put, post, delete, get_marketplace_id 
-from utils import Paginator, ObjectJSON
-from models import Marketplace, Owner, Address
+from zoopy.utils import get, put, post, delete, get_marketplace_id
+from zoopy.models import marketplace
 
 
-class Seller(ObjectJSON):
-
-    BASE_MODEL_URL = '/sellers'
-    INDIVIDUALS_URL = BASE_MODEL_URL + "/individuals"
-    BUSINESSES_URL = BASE_MODEL_URL + "/businesses"
-
-    def __init__(self, **kwargs):
-        for key in kwargs.keys():
-            setattr(self, key, kwargs[key])
+BASE_MODEL_URL = '/sellers'
+INDIVIDUALS_URL = f"{BASE_MODEL_URL}/individuals"
+BUSINESSES_URL = f"{BASE_MODEL_URL}/businesses"
    
-        self.marketplace = Marketplace(id=kwargs.get('marketplace_id', get_marketplace_id()))
-       
-        _owner =  kwargs.get('owner')
-        if _owner and not isinstance(_owner, Owner):
-            self.owner = Owner(**self.owner) 
 
-        _addrres = kwargs.get('business_address')
-        if _addrres and not isinstance(_addrres, Address):
-            self.business_address = Address(**self.business_address)
+def get_full_url(seller_type):
+    if seller_type == 'business':
+        return BUSINESSES_URL
+    return INDIVIDUALS_URL
 
+def list(seller_type):
+    marketplace_id = get_marketplace_id()
+    url = f'{marketplace.get_full_url()}{BASE_MODEL_URL}'
+    return get(url)
 
-    @property
-    def full_url(self):
-        print(self.type)
-        if self.type == 'business':
-            return self.BUSINESSES_URL
+def details(seller_id):
+    url = f'{marketplace.get_full_url()}{BASE_MODEL_URL}/{seller_id}'
+    return get(url)
 
-        return self.INDIVIDUALS_URL
+def create(params):
+    url = f'{marketplace.get_full_url()}{get_full_url()}'
+    return post(end_point=url, data=params)
 
-    @classmethod
-    def list(self):
-        marketplace = Marketplace(id=get_marketplace_id())
-        url = f'{marketplace.full_url}{self.BASE_MODEL_URL}'
-        return Paginator(Sender=Seller, **get(url))
+def update(seller_id, params):
+    url = f'{marketplace.get_full_url()}{get_full_url()}/{seller_id}'
+    return put(end_point=url, data=params)
 
-    def details(self):
-        url = f'{self.marketplace.full_url}{self.BASE_MODEL_URL}/{self.id}'
-        return Seller(**get(url))
-    
-    def create(self):
-        url = f'{self.marketplace.full_url}{self.full_url}'
-        return Seller(**post(end_point=url, data=self.toJSON()))
-
-    def update(self):
-        url = f'{self.marketplace.full_url}{self.full_url}/{self.id}'
-        return Seller(**put(end_point=url, data=self.toJSON()))
-
-    def delete(self):
-        url = f'{self.marketplace.full_url}{self.BASE_MODEL_URL}/{self.id}'
-        return delete(url)
+def delete(seller_id):
+    url = f'{marketplace.get_full_url()}{BASE_MODEL_URL}/{seller_id}'
+    return delete(url)

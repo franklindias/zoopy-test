@@ -1,7 +1,5 @@
-from models.address import *
-from models.buyer import *
-from models.marketplace import *
-from models.owner import *
-from models.seller import *
-from models.split_role import *
-from models.transaction import *
+from zoopy.models import seller
+from zoopy.models import buyer
+from zoopy.models import marketplace
+from zoopy.models import transaction
+# from zoopy.models import split_role

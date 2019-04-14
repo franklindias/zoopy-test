@@ -3,13 +3,9 @@ from future.utils import integer_types
 
 
 class ObjectJSON(object):
-    def toJSON(self):
+    def to_json(self):
         dicionary = json.loads(json.dumps(self, default=lambda o: o.__dict__))
-        dicionary = remove_none(dicionary)
-        dicionary = process_name_key(dicionary)
-
-
-        return json.dumps(dicionary, indent=2)
+        return json.dumps(dicionary)
 
 
 def process_name_key(dictionary):

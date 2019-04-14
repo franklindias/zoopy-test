@@ -1,13 +1,10 @@
-class Marketplace(object):
+from zoopy.utils import get, get_marketplace_id
 
-    MODEL_BASE_URL = '/marketplaces'
+MODEL_BASE_URL = '/marketplaces'
 
-    def __init__(self, **kwargs):
-        self.id = kwargs.get('id', None)
 
-    @property
-    def full_url(self):
-        return f'{self.MODEL_BASE_URL}/{self.id}'
+def get_full_url():
+    return f'{MODEL_BASE_URL}/{get_marketplace_id()}'
 
-    def get_details(self):        
-        return self.get(self.get_url)
+def get_details(params):        
+    return get(get_full_url())
