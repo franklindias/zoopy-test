@@ -11,7 +11,7 @@ setuptools.setup(
     description='Python Library to ZOOP.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/surfmappers/wirecardpy',
+    url='https://github.com/franklindias/zoopy-test.git',
     author='Anderson Queiroz, Franklin Dias',
     author_email='anderson@emai.com',
     license='MIT',
